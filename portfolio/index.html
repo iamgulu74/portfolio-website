@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasaswi Das | 3D Interactive Portfolio</title>
+    <meta name="description"
+        content="Professional 3D Portfolio showcasing skills, projects, and experience using Three.js and modern web technologies.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Three.js from CDN -->
+    <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+    </script>
+</head>
+
+<body class="dark-theme">
+    <script>document.body.classList.add('js-enabled');</script>
+    <!-- Loading Screen -->
+    <div id="loader" class="loader-container">
+        <div class="loader-content">
+            <div class="cube-loader">
+                <div class="cube-face front"></div>
+                <div class="cube-face back"></div>
+                <div class="cube-face left"></div>
+                <div class="cube-face right"></div>
+                <div class="cube-face top"></div>
+                <div class="cube-face bottom"></div>
+            </div>
+            <p>Initializing 3D Universe...</p>
+        </div>
+    </div>
+
+    <!-- Background Canvas for Three.js -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-logo">PORTFOLIO.</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li class="mobile-only"><a href="./resume/" target="_blank" class="nav-link">Resume</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="./resume/" target="_blank" class="btn-primary mini"
+                onclick="window.open('./resume/', '_blank'); return false;">View Resume</a>
+        </div>
+    </nav>
+
+    <!-- Theme & Music Toggles -->
+    <div class="floating-controls">
+        <button id="theme-toggle" class="control-btn" title="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="music-toggle" class="control-btn" title="Play/Pause Background Music">
+            <i class="fa-solid fa-volume-xmark"></i>
+        </button>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-outline"></div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress-container">
+        <div id="scroll-progress" class="scroll-progress-bar"></div>
+    </div>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section hero-section">
+            <div class="container hero-content">
+                <div class="hero-text-wrapper" data-parallax="0.2">
+                    <h1 class="hero-title" id="hero-name">JASASWI<br><span class="accent">DAS</span></h1>
+                    <p class="hero-tagline" id="typewriter"></p>
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn-primary">View Projects</a>
+                        <a href="#contact" class="btn-outline">Hire Me</a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <span>Scroll Down</span>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <h2 class="section-title" data-reveal>About <span class="accent">Me</span></h2>
+                <div class="about-grid">
+                    <div class="about-image" data-reveal="left">
+                        <div class="image-3d-wrapper">
+                            <div class="image-3d-inner">
+                                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
+                                    alt="Masked Coder" id="profile-img">
+                                <div class="code-animation-overlay" id="code-particles" style="z-index: 10;"></div>
+                                <div class="frame-3d"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-text" data-reveal="right">
+                        <h3>Building AI-Driven Solutions for Real-World Problems</h3>
+                        <p>I am Jasaswi Das, a Software Engineer focused on building high-performance digital
+                            ecosystems. Currently pursuing a B.Tech at DRIEMS University, I specialize in combining
+                            Machine Learning with modern full-stack development. I am passionate about tackling
+                            challenging problems in reputable organizations where I can continuously learn and
+                            contribute to technological growth.</p>
+
+                        <div class="experience-timeline">
+                            <div class="timeline-item">
+                                <span class="year">2024 - 2028</span>
+                                <h4>B.Tech in Computer Science</h4>
+                                <p>DRIEMS University, Cuttack. Focusing on problem-solving, analytical skills, and
+                                    advanced engineering principles.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="year">2022 - 2024</span>
+                                <h4>Higher Secondary (+2 Science)</h4>
+                                <p>Hitech Higher Secondary School, Jajpur. Strong foundation in mathematics and
+                                    scientific logic.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="year">2021 - 2022</span>
+                                <h4>High School (10th)</h4>
+                                <p>Saraswati Shishu Vidya Mandir, Jajpur.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-reveal>Recent <span class="accent">Work</span></h2>
+                    <div class="filter-btns" data-reveal>
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="web">Web</button>
+                        <button class="filter-btn" data-filter="3d">3D</button>
+                        <button class="filter-btn" data-filter="app">Apps</button>
+                    </div>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Combined Project: Triton AI Ecosystem -->
+                    <div class="project-card" data-category="web" data-reveal>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Triton AI Ecosystem">
+                                <div class="card-overlay">
+                                    <h3>Triton AI Ecosystem</h3>
+                                    <p>MedQueue AI + EduMatch AI</p>
+                                    <div class="tech-badges">
+                                        <span>Full-Stack AI</span>
+                                        <span>Railway</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>AI Ecosystem</h3>
+                                <p>A unified platform housing MedQueue (Hospital Queue Predictor) and EduMatch
+                                    (Personalized Career Counselor). Deploying advanced AI for real-world impact.</p>
+                                <div class="card-actions">
+                                    <a href="https://efficient-flexibility-production-7d96.up.railway.app/"
+                                        class="btn-mini github" target="_blank"
+                                        onclick="window.open('https://efficient-flexibility-production-7d96.up.railway.app/', '_blank'); return false;">Live
+                                        Demo</a>
+                                    <a href="https://github.com/iamgulu74/trithon" class="btn-mini github">Source</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Smart Expense Tracker -->
+                    <div class="project-card" data-category="app" data-reveal>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Smart Expense Tracker">
+                                <div class="card-overlay">
+                                    <h3>Smart Expense Tracker</h3>
+                                    <div class="tech-badges">
+                                        <span>Python</span>
+                                        <span>JavaScript</span>
+                                        <span>ML</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Smart Expense Tracker</h3>
+                                <p>Built an AI-powered expense tracker that analyzes spending patterns and predicts
+                                    future expenses using machine learning. Implemented data visualization and automated
+                                    budget alerts.</p>
+                                <div class="card-actions">
+                                    <a href="./expense-demo/" class="btn-mini github"
+                                        onclick="window.open('./expense-demo/', '_blank'); return false;">Live
+                                        Demo</a>
+                                    <a href="https://github.com/iamgulu74" class="btn-mini github">Source</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Resume Analyzer AI -->
+                    <div class="project-card" data-category="web" data-reveal>
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Resume Analyzer AI">
+                                <div class="card-overlay">
+                                    <h3>Resume Analyzer AI</h3>
+                                    <div class="tech-badges">
+                                        <span>React</span>
+                                        <span>OpenAI</span>
+                                        <span>ATS SDK</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Resume Analyzer AI</h3>
+                                <p>Developed an AI-based resume analyzer that extracts skills, evaluates ATS
+                                    compatibility, and provides improvement suggestions using NLP techniques.</p>
+                                <div class="card-actions">
+                                    <a href="./resume-analyzer-demo/" class="btn-mini github"
+                                        onclick="window.open('./resume-analyzer-demo/', '_blank'); return false;">Live
+                                        Demo</a>
+                                    <a href="https://github.com/iamgulu74" class="btn-mini github">Source</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <h2 class="section-title" data-reveal>Technical <span class="accent">Skills</span></h2>
+                <div class="skills-content">
+                    <div class="skills-3d-container" data-reveal="left">
+                        <div id="skills-sphere"></div>
+                    </div>
+                    <div class="skills-bars" data-reveal="right">
+                        <div class="skill-group">
+                            <div class="group-header">Frontend & Design</div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>React 18 / TypeScript</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Tailwind CSS / Three.js</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-group">
+                            <div class="group-header">Backend & AI/ML</div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Node.js / FastAPI</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>ML (TensorFlow, scikit-learn)</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>LLM (GPT-4, LangChain)</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 82%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Python (OOP, Data Structures)</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>C (Pointers, Memory Mgmt)</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <h2 class="section-title" data-reveal>Get in <span class="accent">Touch</span></h2>
+                <div class="contact-wrapper">
+                    <div class="contact-info" data-reveal="left">
+                        <div class="info-card">
+                            <h3>Let's Collaborate</h3>
+                            <p>Have a project in mind or just want to say hi? Feel free to reach out!</p>
+                            <div class="social-links">
+                                <a href="https://github.com/iamgulu74" class="social-btn" title="GitHub"><i
+                                        class="fa-brands fa-github"></i></a>
+                                <a href="mailto:jasaswid83@gmail.com" class="social-btn" title="Email"><i
+                                        class="fa-solid fa-envelope"></i></a>
+                                <a href="tel:6371401928" class="social-btn" title="Call Me"><i
+                                        class="fa-solid fa-phone"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form-wrapper" data-reveal="right">
+                        <form id="contact-form" class="styled-form">
+                            <div class="form-group">
+                                <input type="text" id="name" required placeholder=" ">
+                                <label for="name">Your Name</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" required placeholder=" ">
+                                <label for="email">Email Address</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" required placeholder=" "></textarea>
+                                <label for="message">Your Message</label>
+                            </div>
+                            <button type="submit" class="btn-primary full-width">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Portfolio Experince. Built with passion & Three.js</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Emergency Service Worker Cleanup (Prevent stale SW from breaking links)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+                for (let registration of registrations) {
+                    registration.unregister();
+                }
+            });
+        }
+
+        // Inline fallback to remove loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                if (loader) loader.classList.add('hidden');
+            }, 500);
+        });
+        // Emergency fallback after 5 seconds
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            if (loader && !loader.classList.contains('hidden')) {
+                loader.classList.add('hidden');
+            }
+        }, 5000);
+    </script>
+    <script type="module" src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+
+</html>

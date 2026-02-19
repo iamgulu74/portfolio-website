@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Jasaswi Das</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00e5ff;
+            --secondary: #7000ff;
+            --text-dark: #1a1a1a;
+            --text-light: #555;
+            --border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4f7f9;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .header-left h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            color: #000;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header-left h2 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header-right {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .contact-info div {
+            margin-bottom: 4px;
+        }
+
+        .contact-info a {
+            color: var(--text-dark);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .contact-info a:hover {
+            border-bottom-color: var(--primary);
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            color: #000;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .objective-text {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .edu-item,
+        .skill-group {
+            margin-bottom: 20px;
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .edu-meta {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .skill-list li::before {
+            content: "•";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .skill-group-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .languages-section span {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-right: 10px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .btn-print {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .btn-print:hover {
+            transform: scale(1.05);
+            background: #00b8cc;
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .resume-container {
+                padding: 30px 20px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .header-right {
+                text-align: left;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-left h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media print {
+            .btn-print {
+                display: none;
+            }
+
+            body {
+                padding: 0;
+                background: #fff;
+            }
+
+            .resume-container {
+                box-shadow: none;
+                width: 100%;
+                max-width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="btn-print" onclick="window.print()">
+        <span>Print to PDF</span>
+    </button>
+
+    <div class="resume-container">
+        <header>
+            <div class="header-left">
+                <h1>Jasaswi Das</h1>
+                <h2>Software Engineer</h2>
+            </div>
+            <div class="header-right">
+                <div class="contact-info">
+                    <div><i class="fa-solid fa-envelope"></i> <a
+                            href="mailto:jasaswid83@gmail.com">jasaswid83@gmail.com</a></div>
+                    <div><i class="fa-solid fa-phone"></i> <a href="tel:6371401928">+91 6371401928</a></div>
+                    <div><i class="fa-solid fa-location-dot"></i> Jajpur, Odisha, India</div>
+                    <div><i class="fa-brands fa-github"></i> <a
+                            href="https://github.com/iamgulu74">github.com/iamgulu74</a></div>
+                </div>
+            </div>
+        </header>
+
+        <section>
+            <h3>Professional Summary</h3>
+            <p class="objective-text">
+                Dedicated Software Engineer and B.Tech candidate with a passion for building challenging and innovative
+                digital solutions. Focused on leveraging skills in Python, AI/ML, and Full-Stack development to
+                contribute to organizational growth while continuously advancing technical expertise.
+            </p>
+        </section>
+
+        <section>
+            <h3>Education</h3>
+            <div class="edu-item">
+                <div class="edu-header">
+                    <span>B.Tech in Computer Science</span>
+                    <span>2024 — 2028 (Expected)</span>
+                </div>
+                <div class="edu-meta">
+                    <span>DRIEMS University, Cuttack</span>
+                    <span>Cuttack, Odisha</span>
+                </div>
+            </div>
+            <div class="edu-item">
+                <div class="edu-header">
+                    <span>Higher Secondary (+2 Science)</span>
+                    <span>2022 — 2024</span>
+                </div>
+                <div class="edu-meta">
+                    <span>Hitech Higher Secondary School</span>
+                    <span>Jajpur, Odisha</span>
+                </div>
+            </div>
+            <div class="edu-item">
+                <div class="edu-header">
+                    <span>High School (10th)</span>
+                    <span>2021 — 2022</span>
+                </div>
+                <div class="edu-meta">
+                    <span>Saraswati Shishu Vidya Mandir</span>
+                    <span>Jajpur, Odisha</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>Key Projects</h3>
+            <div class="edu-item">
+                <div class="edu-header">
+                    <span>Triton AI Ecosystem</span>
+                </div>
+                <div class="edu-meta" style="margin-bottom: 8px;">
+                    <span>Unified Full-Stack AI Solutions</span>
+                </div>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Developed a multi-platform ecosystem comprising
+                    <strong>MedQueue AI</strong> (a hospital wait-time predictor using Gradient Boosting models) and
+                    <strong>EduMatch AI</strong> (an intelligent career counselor using GPT-4 and custom aptitude
+                    assessments). Featured high-performance backend integration and real-world deployment metrics.
+                </p>
+            </div>
+            <div class="edu-item">
+                <div class="edu-header">
+                    <span>Smart Expense Tracker</span>
+                </div>
+                <div class="edu-meta" style="margin-bottom: 8px;">
+                    <span>AI-Powered Financial Insights</span>
+                </div>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Tracks spending and predicts future expenses
+                    using ML. Features include interactive expense charts, monthly budget predictions, and smart warning
+                    alerts.</p>
+            </div>
+            <div class="edu-item">
+                <div class="edu-header">
+                    <span>Resume Analyzer AI</span>
+                </div>
+                <div class="edu-meta" style="margin-bottom: 8px;">
+                    <span>Intelligent Career Tool</span>
+                </div>
+                <p style="font-size: 0.95rem; color: var(--text-light);">AI-driven feedback system that analyzes
+                    uploaded resumes. Provides skill detection, ATS scoring, and personalized job suggestions to improve
+                    candidate visibility.</p>
+            </div>
+        </section>
+
+        <section>
+            <h3>Technical Skills</h3>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <div class="skill-group-title">Programming Languages</div>
+                    <ul class="skill-list">
+                        <li>Python (Core, OOP, Data Structures)</li>
+                        <li>C (Pointers, Memory Allocation, Structures)</li>
+                        <li>JavaScript / TypeScript</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-title">Frameworks & Tools</div>
+                    <ul class="skill-list">
+                        <li>React 18 / Tailwind CSS</li>
+                        <li>Node.js / Express</li>
+                        <li>FastAPI (Python)</li>
+                        <li>Firebase / Firestore</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-title">AI & Machine Learning</div>
+                    <ul class="skill-list">
+                        <li>TensorFlow / scikit-learn</li>
+                        <li>LLM Integration (GPT-4, LangChain)</li>
+                        <li>Predictive Analytics</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-title">Concepts</div>
+                    <ul class="skill-list">
+                        <li>Object-Oriented Programming (OOP)</li>
+                        <li>Data Structures & Algorithms</li>
+                        <li>Responsive Web Design</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="languages-section">
+            <h3>Languages</h3>
+            <span>Hindi</span>
+            <span>English</span>
+            <span>Odia</span>
+        </section>
+
+        <section
+            style="margin-top: 50px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.85rem; color: #999; text-align: center;">
+            Personal Details: Date of Birth: 01/10/2005 | Gender: Male | Nationality: Indian
+        </section>
+    </div>
+
+</body>
+
+</html>
