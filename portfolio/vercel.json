@@ -1,6 +1,25 @@
 {
+  "version": 2,
   "cleanUrls": true,
   "trailingSlash": true,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/resume/",
+      "destination": "/resume/index.html"
+    },
+    {
+      "source": "/expense-demo/",
+      "destination": "/expense-demo/index.html"
+    },
+    {
+      "source": "/resume-analyzer-demo/",
+      "destination": "/resume-analyzer-demo/index.html"
+    }
+  ],
   "redirects": [
     {
       "source": "/resume",
