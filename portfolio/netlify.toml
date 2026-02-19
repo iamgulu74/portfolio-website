@@ -1,0 +1,17 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/resume"
+  to = "/resume/"
+  status = 301
+
+[[redirects]]
+  from = "/expense-demo"
+  to = "/expense-demo/"
+  status = 301
+
+[[redirects]]
+  from = "/resume-analyzer-demo"
+  to = "/resume-analyzer-demo/"
+  status = 301
